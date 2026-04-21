@@ -120,7 +120,7 @@
     rx: 175, ry: 130,
     get frontX(){ return this.cx - this.rx; },
     get lensX(){  return this.cx - this.rx + 62; },
-    get retinaX(){ return this.cx + this.rx * 0.80; }
+    get retinaX(){ return this.cx + this.rx; } // Fixed to match exact back of eye (green dot)
   };
 
   /* retinaX on the ellipse arc at a given y offset */
@@ -185,7 +185,7 @@
     return retinaX;
   }
 
-  /* ── Eye lens thickness (Fix 3: THICKER = nearer object) ── */
+  /* ── Eye lens thickness (THICKER = nearer object) ── */
   function eyeLensThickness(){
     const thin=13, thick=30;
     // r=0 when object is far left, r=1 when object is close to eye
@@ -318,7 +318,7 @@
     label('Convex lens', CORR_X-40, AY-h/2-13, '#8e44ad',13);
   }
 
-  /* Fix 2: Plano-concave lens: straight left edge, concave right curve */
+  /* Plano-concave lens: straight left edge, concave right curve */
   function drawConcaveCorrLens(){
     const lx=CORR_X, h=148, t=20;
     const flatX = lx - t/2;
@@ -376,7 +376,7 @@
     if(S.objMode==='near'){
       const ox = S.objX, oy = AY;
       if(S.mode!=='normal' && S.lens!=='none'){
-        // Fix 4 & 5: Calculate ray divergence/convergence on corrective lens
+        // Calculate ray divergence/convergence on corrective lens
         const straightY = oy + (sEntry) * (CORR_X - ox) / (lensX - ox);
         let corrY = straightY;
 
@@ -404,7 +404,7 @@
       }
     }
 
-    // Fix 1: Post-eye-lens unified pathing that stops perfectly at the retina
+    // Post-eye-lens unified pathing that stops perfectly at the retina
     const onRetina = Math.abs(focusX - retinaX) < 3;
     
     if (onRetina) {
@@ -457,7 +457,7 @@
     const behind   = focusX > retX+3;
 
     if(onRetina){
-      const hitX = retinaXatY(0);
+      const hitX = EYE.retinaX;
       dot(hitX, AY, 8, '#27ae60');
       label('Image on retina ✓', hitX-76, AY+28, '#1b6c42',13);
     } else if(behind){
@@ -465,13 +465,13 @@
       ctx.strokeStyle='#f2994a'; ctx.lineWidth=2; ctx.setLineDash([5,5]);
       ctx.beginPath(); ctx.arc(focusX,AY,8,0,Math.PI*2); ctx.stroke();
       ctx.restore();
-      const hitX=retinaXatY(0);
+      const hitX=EYE.retinaX;
       dot(hitX,AY,7,'#eb5757');
       label('Expected focus behind retina', hitX+12, AY-20, '#c47b00',13);
     } else {
       dot(focusX,AY,8,'#f2994a');
       label('Focus in front of retina', focusX-60, AY-20, '#c05000',13);
-      const hitX=retinaXatY(0);
+      const hitX=EYE.retinaX;
       dot(hitX,AY,7,'#eb5757');
     }
   }
