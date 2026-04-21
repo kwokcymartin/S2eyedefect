@@ -6,42 +6,37 @@
 <title>Eye Image Formation Simulation</title>
 <style>
   :root{
-    --bg:#f3f7ff;
-    --panel:#ffffff;
-    --ink:#183153;
-    --muted:#5e7392;
-    --line:#cfdaf0;
-    --blue:#2f80ed;
-    --green:#27ae60;
-    --orange:#f2994a;
-    --purple:#9b51e0;
+    --bg:#f3f7ff;--panel:#ffffff;--ink:#183153;--muted:#5e7392;
+    --line:#cfdaf0;--blue:#2f80ed;--green:#27ae60;--orange:#f2994a;--purple:#9b51e0;
   }
   *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(180deg,#eef4ff 0%,#f8fbff 100%);
-    color:var(--ink);
-  }
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#eef4ff 0%,#f8fbff 100%);color:var(--ink);}
   .wrap{max-width:1200px;margin:16px auto;padding:0 16px 20px}
   h1{margin:0 0 8px;font-size:26px}
   .sub{margin:0 0 12px;color:var(--muted);line-height:1.5;font-size:15px}
   .toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
-  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px;box-shadow:0 6px 20px rgba(23,42,79,0.07)}
-  .panel h2{margin:0 0 9px;font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px;
+    box-shadow:0 6px 20px rgba(23,42,79,0.07)}
+  .panel h2{margin:0 0 9px;font-size:14px;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.5px}
   .btns{display:flex;flex-wrap:wrap;gap:7px}
-  button{border:none;border-radius:999px;padding:9px 15px;font-size:14px;cursor:pointer;background:#e9f1ff;color:var(--ink);transition:.15s ease}
+  button{border:none;border-radius:999px;padding:9px 15px;font-size:14px;cursor:pointer;
+    background:#e9f1ff;color:var(--ink);transition:.15s ease}
   button:hover{transform:translateY(-1px);background:#d6e8ff}
   button.active{background:var(--blue);color:#fff;box-shadow:0 5px 14px rgba(47,128,237,.22)}
   button.g.active{background:var(--green)}
   button.p.active{background:var(--purple)}
   button:disabled{cursor:not-allowed;opacity:.4;transform:none}
-  .canvas-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 10px 28px rgba(23,42,79,0.08)}
-  canvas{display:block;width:100%;max-width:1140px;height:auto;border-radius:10px;border:1px solid #dbe6f8;background:#f9fcff;margin:0 auto;touch-action:none;cursor:default}
+  .canvas-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;
+    box-shadow:0 10px 28px rgba(23,42,79,0.08)}
+  canvas{display:block;width:100%;max-width:1140px;height:auto;border-radius:10px;
+    border:1px solid #dbe6f8;background:#f9fcff;margin:0 auto;touch-action:none;cursor:default}
   canvas.draggable{cursor:grab}
   canvas.dragging{cursor:grabbing}
   .status{margin-top:10px;display:grid;grid-template-columns:1.3fr .7fr;gap:10px}
-  .note{background:#f8fbff;border:1px solid #dce8fb;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:14px}
+  .note{background:#f8fbff;border:1px solid #dce8fb;border-radius:12px;padding:12px 14px;
+    line-height:1.55;font-size:14px}
   .note strong{display:block;margin-bottom:5px;font-size:15px}
   .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:9px;font-size:13px;color:var(--muted)}
   .key{display:inline-flex;align-items:center;gap:6px}
@@ -53,13 +48,13 @@
 <body>
 <div class="wrap">
   <h1>Eye Image Formation Simulation</h1>
-  <p class="sub">S2 Science — Explore how the eye focuses light. Drag the point object in near-object mode. Switch between eye conditions and corrective lenses to compare ray diagrams.</p>
-
+  <p class="sub">S2 Science — Explore how the eye focuses light. Drag the point object in near-object mode.
+    Switch between eye conditions and corrective lenses to compare ray diagrams.</p>
   <div class="toolbar">
     <div class="panel">
       <h2>Eye Condition</h2>
       <div class="btns">
-        <button id="btnNormal" class="active">Normal sight</button>
+        <button id="btnNormal"   class="active">Normal sight</button>
         <button id="btnMyopia">Short-sightedness</button>
         <button id="btnHyperopia">Long-sightedness</button>
       </div>
@@ -67,7 +62,7 @@
     <div class="panel">
       <h2>Object Distance</h2>
       <div class="btns">
-        <button id="btnNear" class="g active">Near object</button>
+        <button id="btnNear"    class="g active">Near object</button>
         <button id="btnDistant" class="g">Distant object</button>
       </div>
     </div>
@@ -80,7 +75,6 @@
       </div>
     </div>
   </div>
-
   <div class="canvas-card">
     <canvas id="sim" width="1140" height="580"></canvas>
     <div class="status">
@@ -99,25 +93,20 @@
       <div class="note">
         <strong>Instructions</strong>
         <ol style="margin:4px 0 0;padding-left:18px;line-height:1.7">
-          >Select an eye condition.</li>
-          >In <em>Near object</em> mode, drag the object (orange dot) left/right on the axis.</li>
-          >Switch to <em>Distant object</em> — parallel rays appear.</li>
-          >Add a corrective lens and observe the change in focus.</li>
+          <li>Select an eye condition.</li>
+          <li>In <em>Near object</em> mode, drag the object (orange dot) left/right on the axis.</li>
+          <li>Switch to <em>Distant object</em> — parallel rays appear.</li>
+          <li>Add a corrective lens and observe the change in focus.</li>
         </ol>
         <div style="margin-top:7px;font-size:13px;color:var(--muted)">Corrective lens position is fixed by the system.</div>
       </div>
     </div>
   </div>
 </div>
-
 <script>
 (() => {
-  /* ─── State ─── */
-  const S = { mode:'normal', objMode:'near', lens:'none', objX:200, drag:false };
-
-  /* ─── DOM ─── */
-  const cv = document.getElementById('sim');
-  const cx = cv.getContext('2d');
+  const cv  = document.getElementById('sim');
+  const ctx = cv.getContext('2d');
   const stTitle = document.getElementById('stTitle');
   const stText  = document.getElementById('stText');
 
@@ -125,18 +114,30 @@
   const AY = 300;           // principal axis y
   const CLAMP_MIN = 80;
 
-  /* ─── Fixed geometry (same eyeball for all modes) ─── */
+  /* ── Fixed eye geometry (same for all modes) ── */
   const EYE = {
     cx: 820, cy: AY,
     rx: 175, ry: 130,
     get frontX(){ return this.cx - this.rx; },
-    get lensX(){ return this.cx - this.rx + 60; },  // eye lens position
+    get lensX(){  return this.cx - this.rx + 62; },
     get retinaX(){ return this.cx + this.rx * 0.80; }
   };
-  const CORR_X = EYE.frontX - 60;   // corrective lens fixed position
-  const CLAMP_MAX = CORR_X - 60;
 
-  /* ─── Button wiring ─── */
+  /* retinaX on the ellipse arc at a given y offset */
+  function retinaXatY(dy){
+    // solve ellipse: ((x-cx)/rx)^2 + (dy/ry)^2 = 1
+    const t = 1 - (dy*dy)/(EYE.ry*EYE.ry);
+    if(t < 0) return EYE.retinaX;
+    return EYE.cx + EYE.rx * Math.sqrt(t);
+  }
+
+  const CORR_X   = EYE.frontX - 62;
+  const CLAMP_MAX = CORR_X - 55;
+
+  /* ── State ── */
+  const S = { mode:'normal', objMode:'near', lens:'none', objX:200, drag:false };
+
+  /* ── Button DOM ── */
   const B = {
     normal:   document.getElementById('btnNormal'),
     myopia:   document.getElementById('btnMyopia'),
@@ -147,487 +148,460 @@
     convex:   document.getElementById('btnConvex'),
     concave:  document.getElementById('btnConcave')
   };
+  B.normal.onclick    = ()=>{ S.mode='normal'; S.lens='none'; redraw(); };
+  B.myopia.onclick    = ()=>{ S.mode='myopia';    redraw(); };
+  B.hyperopia.onclick = ()=>{ S.mode='hyperopia'; redraw(); };
+  B.near.onclick      = ()=>{ S.objMode='near';    redraw(); };
+  B.distant.onclick   = ()=>{ S.objMode='distant'; redraw(); };
+  B.noLens.onclick    = ()=>{ S.lens='none';   redraw(); };
+  B.convex.onclick    = ()=>{ if(S.mode!=='normal'){ S.lens='convex';  redraw(); }};
+  B.concave.onclick   = ()=>{ if(S.mode!=='normal'){ S.lens='concave'; redraw(); }};
 
-  B.normal.onclick   = ()=>{ S.mode='normal'; S.lens='none'; refresh(); };
-  B.myopia.onclick   = ()=>{ S.mode='myopia';   refresh(); };
-  B.hyperopia.onclick= ()=>{ S.mode='hyperopia'; refresh(); };
-  B.near.onclick     = ()=>{ S.objMode='near';    refresh(); };
-  B.distant.onclick  = ()=>{ S.objMode='distant'; refresh(); };
-  B.noLens.onclick   = ()=>{ S.lens='none';   refresh(); };
-  B.convex.onclick   = ()=>{ if(S.mode!=='normal') S.lens='convex';   refresh(); };
-  B.concave.onclick  = ()=>{ if(S.mode!=='normal') S.lens='concave';  refresh(); };
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const lerp =(a,b,t)=>a+(b-a)*t;
 
-  /* ─── Clamp util ─── */
-  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
-  const lerp  = (a,b,t)=>a+(b-a)*t;
+  /* ── Compute where rays focus on the axis ── */
+  function computeFocusX(){
+    const {lensX,retinaX}=EYE;
+    const span = retinaX - lensX;
 
-  /* ─── Optics: compute focus X given current state ─── */
-  function computeFocusX() {
-    const { lensX, retinaX } = EYE;
-    const span = retinaX - lensX;         // distance eye-lens → retina
-    const near = lensX - S.objX;           // object distance
-
-    if(S.mode==='normal') return retinaX;  // always corrected by accommodation
+    if(S.mode==='normal') return retinaX;
 
     if(S.mode==='myopia'){
-      if(S.objMode==='near'){
-        return retinaX;                    // myopia: near → still OK
-      } else {
-        // distant without correction: focus in front of retina
-        const base = lensX + span * 0.58;
-        if(S.lens==='concave') return retinaX;            // corrected
-        if(S.lens==='convex')  return lensX + span * 0.35;// worse
-        return base;
-      }
+      if(S.objMode==='near')    return retinaX;
+      // distant
+      if(S.lens==='none')    return lensX + span*0.60;   // in front
+      if(S.lens==='concave') return retinaX;             // corrected
+      if(S.lens==='convex')  return lensX + span*0.42;   // worse (converge more = even more in front)
     }
 
     if(S.mode==='hyperopia'){
-      if(S.objMode==='distant'){
-        return retinaX;                    // hyperopia: distant → still OK
-      } else {
-        // near without correction: focus behind retina
-        const base = retinaX + span * 0.40;
-        if(S.lens==='convex')  return retinaX;             // corrected
-        if(S.lens==='concave') return retinaX + span * 0.68;// worse
-        return base;
-      }
+      if(S.objMode==='distant') return retinaX;
+      // near
+      if(S.lens==='none')    return retinaX + span*0.42; // behind
+      if(S.lens==='convex')  return retinaX;             // corrected
+      if(S.lens==='concave') return retinaX + span*0.68; // worse
     }
     return retinaX;
   }
 
-  /* ─── Eye lens thickness (accommodation) ─── */
+  /* ── Eye lens thickness (THICKER = nearer object) ── */
   function eyeLensThickness(){
-    const t0=14, t1=28;
+    const thin=13, thick=30;
     if(S.mode==='normal'){
-      if(S.objMode==='distant') return t0;
-      const r=(CLAMP_MAX-S.objX)/(CLAMP_MAX-CLAMP_MIN);
-      return lerp(t0,t1,r);
+      if(S.objMode==='distant') return thin;
+      // nearer object → thicker lens (fix #2)
+      const r=(CLAMP_MAX-S.objX)/(CLAMP_MAX-CLAMP_MIN); // r→1 when object is very close
+      return lerp(thin, thick, r);
     }
     if(S.mode==='myopia'){
-      if(S.objMode==='distant') return t1+4; // eye too powerful
+      if(S.objMode==='distant') return thick+3; // always over-powerful
       const r=(CLAMP_MAX-S.objX)/(CLAMP_MAX-CLAMP_MIN);
-      return lerp(t1,t1+4,r);
+      return lerp(thick, thick+3, r);
     }
     if(S.mode==='hyperopia'){
-      if(S.objMode==='distant') return t0-2;
-      return t0;
+      if(S.objMode==='distant') return thin-1;
+      // fix #7: slight thickening as object gets nearer
+      const r=(CLAMP_MAX-S.objX)/(CLAMP_MAX-CLAMP_MIN);
+      return lerp(thin+1, thin+5, r);
     }
-    return t0;
+    return thin;
   }
 
-  /* ─── Draw helpers ─── */
-  function line(x1,y1,x2,y2,color,lw=2,dash=[]){
-    cx.save();
-    cx.strokeStyle=color; cx.lineWidth=lw; cx.setLineDash(dash);
-    cx.beginPath(); cx.moveTo(x1,y1); cx.lineTo(x2,y2); cx.stroke();
-    cx.restore();
+  /* ── Low-level draw helpers ── */
+  function stroke(pts, color, lw=2.4, dash=[]){
+    if(pts.length<2) return;
+    ctx.save();
+    ctx.strokeStyle=color; ctx.lineWidth=lw; ctx.setLineDash(dash);
+    ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
+    pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));
+    ctx.stroke(); ctx.restore();
+  }
+
+  function arrowAt(ax,ay,bx,by,color,sz=9){
+    const ang=Math.atan2(by-ay,bx-ax);
+    ctx.save(); ctx.fillStyle=color;
+    ctx.translate(bx,by); ctx.rotate(ang);
+    ctx.beginPath(); ctx.moveTo(0,0);
+    ctx.lineTo(-sz,-sz*0.4); ctx.lineTo(-sz,sz*0.4);
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+
+  /* Draw a polyline AND add mid-segment arrowheads (fix #3) */
+  function drawRayPoly(pts, color, lw=2.4){
+    if(pts.length<2) return;
+    stroke(pts,color,lw);
+    // arrowhead on each segment at ~60% along it
+    for(let i=0;i<pts.length-1;i++){
+      const a=pts[i],b=pts[i+1];
+      const mx=lerp(a.x,b.x,0.6), my=lerp(a.y,b.y,0.6);
+      arrowAt(a.x,a.y,mx,my,color,9);
+    }
+    // tip arrow
+    const last=pts[pts.length-1], prev=pts[pts.length-2];
+    arrowAt(prev.x,prev.y,last.x,last.y,color,9);
+  }
+
+  function drawDashedPoly(pts,color,lw=1.8){
+    if(pts.length<2) return;
+    stroke(pts,color,lw,[6,5]);
   }
 
   function dot(x,y,r,color){
-    cx.save();
-    cx.fillStyle=color;
-    cx.beginPath(); cx.arc(x,y,r,0,Math.PI*2); cx.fill();
-    cx.restore();
+    ctx.save(); ctx.fillStyle=color;
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); ctx.restore();
   }
 
-  function label(text,x,y,color='#183153',size=13,align='left'){
-    cx.save();
-    cx.font=`${size}px Arial`; cx.fillStyle=color; cx.textAlign=align;
-    // small bg
-    const tw=cx.measureText(text).width;
-    cx.fillStyle='rgba(255,255,255,0.82)';
-    cx.fillRect(align==='center'?x-tw/2-4:x-3,y-size,tw+8,size+5);
-    cx.fillStyle=color;
-    cx.fillText(text,x,y);
-    cx.restore();
+  function label(text,x,y,color='#183153',size=13){
+    ctx.save(); ctx.font=`${size}px Arial`;
+    const tw=ctx.measureText(text).width;
+    ctx.fillStyle='rgba(255,255,255,0.85)';
+    ctx.fillRect(x-3,y-size,tw+8,size+5);
+    ctx.fillStyle=color; ctx.fillText(text,x,y);
+    ctx.restore();
   }
 
-  function arrowhead(x,y,angle,color,size=10){
-    cx.save();
-    cx.fillStyle=color;
-    cx.translate(x,y); cx.rotate(angle);
-    cx.beginPath();
-    cx.moveTo(0,0); cx.lineTo(-size,-size*0.4); cx.lineTo(-size,size*0.4);
-    cx.closePath(); cx.fill();
-    cx.restore();
-  }
-
-  /* ─── Draw eyeball ─── */
-  function drawEye(){
-    // white fill
-    const g=cx.createRadialGradient(EYE.cx-30,EYE.cy-30,30,EYE.cx,EYE.cy,EYE.rx);
-    g.addColorStop(0,'rgba(255,255,255,1)');
-    g.addColorStop(1,'rgba(210,230,255,0.97)');
-    cx.save();
-    cx.fillStyle=g; cx.strokeStyle='#7ea7d8'; cx.lineWidth=3;
-    cx.beginPath();
-    cx.ellipse(EYE.cx,EYE.cy,EYE.rx,EYE.ry,0,0,Math.PI*2);
-    cx.fill(); cx.stroke();
-    // shine
-    cx.fillStyle='rgba(255,255,255,0.55)';
-    cx.beginPath();
-    cx.ellipse(EYE.cx-EYE.rx+18,EYE.cy,14,60,0,0,Math.PI*2);
-    cx.fill();
-    cx.restore();
-  }
-
-  /* ─── Draw retina (right arc) ─── */
-  function drawRetina(){
-    cx.save();
-    cx.strokeStyle='#eb5757'; cx.lineWidth=9;
-    cx.beginPath();
-    for(let t=-0.92; t<=0.92; t+=0.018){
-      const x=EYE.cx+EYE.rx*Math.cos(t*0.9);
-      const y=EYE.cy+EYE.ry*Math.sin(t*0.9);
-      t===-0.92?cx.moveTo(x,y):cx.lineTo(x,y);
-    }
-    cx.stroke();
-    cx.restore();
-    label('Retina', EYE.retinaX-12, AY-EYE.ry+18, '#b03030', 13);
-  }
-
-  /* ─── Draw biconvex eye lens ─── */
-  function drawEyeLens(thick){
-    const lx=EYE.lensX, h=110;
-    cx.save();
-    cx.beginPath();
-    cx.moveTo(lx,AY-h/2);
-    cx.quadraticCurveTo(lx-thick,AY, lx,AY+h/2);
-    cx.quadraticCurveTo(lx+thick,AY, lx,AY-h/2);
-    cx.closePath();
-    cx.fillStyle='rgba(86,204,242,0.28)';
-    cx.strokeStyle='#2d9cdb'; cx.lineWidth=2.5;
-    cx.fill(); cx.stroke();
-    cx.restore();
-    label('Eye lens', lx-30, AY-h/2-12, '#2d9cdb', 13);
-  }
-
-  /* ─── Draw biconvex corrective lens ─── */
-  function drawConvexCorrLens(){
-    const lx=CORR_X, h=145, t=17;
-    cx.save();
-    cx.beginPath();
-    cx.moveTo(lx,AY-h/2);
-    cx.quadraticCurveTo(lx-t,AY, lx,AY+h/2);
-    cx.quadraticCurveTo(lx+t,AY, lx,AY-h/2);
-    cx.closePath();
-    cx.fillStyle='rgba(155,81,224,0.20)';
-    cx.strokeStyle='#8e44ad'; cx.lineWidth=2.5;
-    cx.fill(); cx.stroke();
-    cx.restore();
-    label('Convex lens', lx-38, AY-h/2-13, '#8e44ad', 13);
-  }
-
-  /* ─── Draw plano-concave corrective lens (flat front, concave back) ─── */
-  function drawConcaveCorrLens(){
-    const lx=CORR_X, h=145, t=16;
-    // flat front edge x
-    const flatX = lx - t*0.15;
-    cx.save();
-    cx.beginPath();
-    // top point → flat front → bottom (straight line on left)
-    cx.moveTo(flatX, AY - h/2);
-    cx.lineTo(flatX, AY + h/2);
-    // bottom → concave back curve → top
-    cx.quadraticCurveTo(lx + t, AY, flatX, AY - h/2);
-    cx.closePath();
-    cx.fillStyle='rgba(155,81,224,0.20)';
-    cx.strokeStyle='#8e44ad'; cx.lineWidth=2.5;
-    cx.fill(); cx.stroke();
-    cx.restore();
-    label('Concave lens', lx-44, AY-h/2-13, '#8e44ad', 13);
-  }
-
-  /* ─── Point-on-line util ─── */
   function ptAtX(x1,y1,x2,y2,tx){
     if(Math.abs(x2-x1)<0.001) return {x:tx,y:y1};
-    const t=(tx-x1)/(x2-x1);
-    return {x:tx, y:lerp(y1,y2,t)};
+    return {x:tx, y:lerp(y1,y2,(tx-x1)/(x2-x1))};
   }
 
-  /* ─── Corrective lens bending ─── */
-  // shift angle of ray at corrX depending on lens type
-  function bendAtCorrLens(inY, inSlope){
-    // inSlope = dy/dx arriving at corrX
-    if(S.lens==='convex'){
-      // converge: reduce divergence (slope pulled toward 0)
-      return inSlope * 0.45;
-    }
-    if(S.lens==='concave'){
-      // diverge: increase slope magnitude
-      return inSlope * 1.55;
-    }
-    return inSlope;
+  /* ── Eye drawing ── */
+  function drawEye(){
+    const g=ctx.createRadialGradient(EYE.cx-30,EYE.cy-30,30,EYE.cx,EYE.cy,EYE.rx);
+    g.addColorStop(0,'rgba(255,255,255,1)');
+    g.addColorStop(1,'rgba(210,230,255,0.97)');
+    ctx.save();
+    ctx.fillStyle=g; ctx.strokeStyle='#7ea7d8'; ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.ellipse(EYE.cx,EYE.cy,EYE.rx,EYE.ry,0,0,Math.PI*2);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,0.5)';
+    ctx.beginPath();
+    ctx.ellipse(EYE.cx-EYE.rx+18,EYE.cy,13,58,0,0,Math.PI*2);
+    ctx.fill(); ctx.restore();
   }
 
-  /* ─── Build ray path points: object/start → eye lens → focus ─── */
-  // Returns array of {x,y} waypoints (solid) and optional dotted extension
-  function buildRay(startX, startY, entryY, focusX){
-    /*
-      startX, startY = origin of ray
-      entryY         = y at EYE.lensX (entry into eye lens on principal-axis side)
-      focusX         = where rays converge on axis
-    */
-    const lx = EYE.lensX;
-    const rx = EYE.retinaX;
-    const points = [];
-    const dotted = [];
+  function drawRetina(){
+    ctx.save(); ctx.strokeStyle='#eb5757'; ctx.lineWidth=9;
+    ctx.beginPath();
+    const steps=80;
+    for(let i=0;i<=steps;i++){
+      const t=-0.92+i*(1.84/steps);
+      const x=EYE.cx+EYE.rx*Math.cos(t*0.90);
+      const y=EYE.cy+EYE.ry*Math.sin(t*0.90);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke(); ctx.restore();
+    label('Retina', EYE.retinaX-14, AY-EYE.ry+16, '#b03030',13);
+  }
 
-    // 1. Ray from start → corrective lens (if present)
-    if(S.mode!=='normal' && S.lens!=='none'){
-      const cxPt = ptAtX(startX,startY,lx,entryY, CORR_X);
-      // slope arriving at corr lens
-      const slopeIn = (entryY - startY)/(lx - startX);
-      // bent slope after corr lens
-      const slopeOut = bendAtCorrLens(cxPt.y, slopeIn);
-      // new entryY at lensX after bending
-      const newEntryY = cxPt.y + slopeOut*(lx - CORR_X);
+  function drawEyeLens(thick){
+    const lx=EYE.lensX, h=112;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lx,AY-h/2);
+    ctx.quadraticCurveTo(lx-thick,AY, lx,AY+h/2);
+    ctx.quadraticCurveTo(lx+thick,AY, lx,AY-h/2);
+    ctx.closePath();
+    ctx.fillStyle='rgba(86,204,242,0.28)';
+    ctx.strokeStyle='#2d9cdb'; ctx.lineWidth=2.5;
+    ctx.fill(); ctx.stroke(); ctx.restore();
+    label('Eye lens', lx-28, AY-h/2-13, '#2d9cdb',13);
+  }
 
-      points.push({x:startX,y:startY},{x:cxPt.x,y:cxPt.y},{x:lx,y:newEntryY});
+  /* Biconvex corrective lens */
+  function drawConvexCorrLens(){
+    const lx=CORR_X, h=148, t=17;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lx,AY-h/2);
+    ctx.quadraticCurveTo(lx-t,AY, lx,AY+h/2);
+    ctx.quadraticCurveTo(lx+t,AY, lx,AY-h/2);
+    ctx.closePath();
+    ctx.fillStyle='rgba(155,81,224,0.20)';
+    ctx.strokeStyle='#8e44ad'; ctx.lineWidth=2.5;
+    ctx.fill(); ctx.stroke(); ctx.restore();
+    label('Convex lens', CORR_X-40, AY-h/2-13, '#8e44ad',13);
+  }
 
-      // after eye lens: line from (lx, newEntryY) → (focusX, AY)
-      if(focusX <= rx){
-        points.push({x:focusX,y:AY});
-        // extend to retina if needed
-        if(focusX < rx){
-          const rPt = ptAtX(lx,newEntryY,focusX,AY, rx);
-          points.push({x:rx,y:rPt.y});
+  /* Plano-concave lens: straight left edge, concave right curve → crescent shape (fix #4) */
+  function drawConcaveCorrLens(){
+    const lx=CORR_X, h=148, t=20;
+    // flatX = left straight edge
+    const flatX = lx - t*0.5;
+    ctx.save();
+    ctx.beginPath();
+    // left straight edge top → bottom
+    ctx.moveTo(flatX, AY - h/2);
+    ctx.lineTo(flatX, AY + h/2);
+    // bottom-left → concave curve back to top-left (curves inward to the right)
+    ctx.bezierCurveTo(
+      flatX + t*1.6, AY + h*0.25,
+      flatX + t*1.6, AY - h*0.25,
+      flatX, AY - h/2
+    );
+    ctx.closePath();
+    ctx.fillStyle='rgba(155,81,224,0.22)';
+    ctx.strokeStyle='#8e44ad'; ctx.lineWidth=2.5;
+    ctx.fill(); ctx.stroke(); ctx.restore();
+    label('Concave lens', CORR_X-44, AY-h/2-13, '#8e44ad',13);
+  }
+
+  /* ── Ray offset at entry of eye lens ──
+     For far rays: start offset = yOff (parallel).
+     Bending by corrective lens changes the entry angle.
+     We keep entry yOff SMALLER for concave cases to stay within eye lens (fix #5,#8).
+  */
+  function getRayParams(){
+    // base offsets (distance from axis) at start and at eye-lens entry
+    // [startOff, entryOff]  (positive = above axis ray; negative handled by sign)
+    const mode=S.mode, obj=S.objMode, lens=S.lens;
+
+    if(mode==='normal'){
+      return { startOff: 52, entryOff: 52 };
+    }
+
+    if(mode==='myopia'){
+      if(obj==='near'){
+        return { startOff:52, entryOff:52 };
+      }
+      // distant
+      if(lens==='none'){
+        return { startOff:52, entryOff:52 };
+      }
+      if(lens==='concave'){
+        // fix #5: bring rays closer so after diverging they still hit within eye lens
+        return { startOff:30, entryOff:38 };
+      }
+      if(lens==='convex'){
+        // fix #6: converge slightly toward axis after convex
+        return { startOff:52, entryOff:38 };
+      }
+    }
+
+    if(mode==='hyperopia'){
+      if(obj==='near'){
+        return { startOff:52, entryOff:52 };
+      }
+      // distant
+      if(lens==='none'){
+        return { startOff:52, entryOff:52 };
+      }
+      if(lens==='concave'){
+        // fix #8: same as myopia concave
+        return { startOff:30, entryOff:38 };
+      }
+      if(lens==='convex'){
+        // fix #9: converge slightly
+        return { startOff:52, entryOff:38 };
+      }
+    }
+
+    return { startOff:52, entryOff:52 };
+  }
+
+  /* ── Build one full ray path (for a single signed offset) ──
+     sign=+1 → ray above axis, sign=-1 → below
+     Returns { solid:[], dotted:[] }
+  */
+  function buildRayPath(sign, focusX){
+    const {lensX,retinaX} = EYE;
+    const {startOff, entryOff} = getRayParams();
+    const sStart = sign * startOff;   // signed start offset from axis
+    const sEntry = sign * entryOff;   // signed entry offset at eye lens
+
+    const solid=[], dotted=[];
+
+    if(S.objMode==='near'){
+      // Ray from point object (on axis) through eye lens to focus
+      const ox = S.objX, oy = AY;
+      // direction from object toward entry point at eye lens
+      // entry point on eye lens
+      const eyeEntry = {x: lensX, y: AY + sEntry};
+
+      if(S.mode!=='normal' && S.lens!=='none'){
+        // Ray hits corrective lens, bends, then goes to eye lens entry
+        // Straight from obj to corrLens
+        const corrPt = ptAtX(ox,oy, lensX, AY+sEntry, CORR_X);
+        solid.push({x:ox,y:oy},{x:corrPt.x,y:corrPt.y},{x:lensX,y:AY+sEntry});
+      } else {
+        solid.push({x:ox,y:oy},{x:lensX,y:AY+sEntry});
+      }
+
+      // After eye lens → to focus on axis
+      if(focusX <= retinaX){
+        // Find exact point where ray hits retina arc
+        // Ray goes from (lensX, AY+sEntry) → (focusX, AY)
+        // Retina hit: solve intersection with ellipse
+        const retHit = rayRetinaIntersect(lensX, AY+sEntry, focusX, AY);
+        if(focusX < retinaX - 2){
+          // focus in front of retina: draw to focus then continue faintly
+          solid.push({x:focusX,y:AY});
+          if(retHit) solid.push(retHit);
+        } else {
+          // focus on retina
+          if(retHit) solid.push(retHit);
+          else solid.push({x:focusX,y:AY});
         }
       } else {
         // focus behind retina
-        const rPt = ptAtX(lx,newEntryY,focusX,AY, rx);
-        points.push({x:rx,y:rPt.y});
-        dotted.push({x:rx,y:rPt.y},{x:focusX,y:AY});
+        const retHit = rayRetinaIntersect(lensX, AY+sEntry, focusX, AY);
+        if(retHit) solid.push(retHit);
+        else solid.push({x:retinaX, y:AY});
+        dotted.push(solid[solid.length-1], {x:focusX,y:AY});
       }
+
     } else {
-      // no corrective lens
-      points.push({x:startX,y:startY},{x:lx,y:entryY});
-      if(focusX <= rx){
-        points.push({x:focusX,y:AY});
-        if(focusX < rx){
-          const rPt = ptAtX(lx,entryY,focusX,AY,rx);
-          points.push({x:rx,y:rPt.y});
+      // distant: parallel rays
+      const startX=32;
+      const startY=AY+sStart;
+
+      if(S.mode!=='normal' && S.lens!=='none'){
+        // parallel → corrLens → bends → eye lens entry → focus
+        const corrY = AY + sStart; // ray is horizontal until corrLens
+        solid.push({x:startX,y:startY},{x:CORR_X,y:corrY},{x:lensX,y:AY+sEntry});
+      } else {
+        solid.push({x:startX,y:startY},{x:lensX,y:AY+sEntry});
+      }
+
+      // after eye lens → focus on axis
+      if(focusX <= retinaX){
+        const retHit = rayRetinaIntersect(lensX, AY+sEntry, focusX, AY);
+        if(focusX < retinaX - 2){
+          solid.push({x:focusX,y:AY});
+          if(retHit) solid.push(retHit);
+        } else {
+          if(retHit) solid.push(retHit);
+          else solid.push({x:focusX,y:AY});
         }
       } else {
-        const rPt = ptAtX(lx,entryY,focusX,AY,rx);
-        points.push({x:rx,y:rPt.y});
-        dotted.push({x:rx,y:rPt.y},{x:focusX,y:AY});
+        const retHit = rayRetinaIntersect(lensX, AY+sEntry, focusX, AY);
+        if(retHit) solid.push(retHit);
+        else solid.push({x:retinaX,y:AY});
+        dotted.push(solid[solid.length-1],{x:focusX,y:AY});
       }
     }
 
-    return {solid:points, dotted};
+    return {solid, dotted};
   }
 
-  function drawPath(pts, color, lw=2.4){
-    if(pts.length<2) return;
-    cx.save();
-    cx.strokeStyle=color; cx.lineWidth=lw;
-    cx.beginPath();
-    cx.moveTo(pts[0].x,pts[0].y);
-    pts.slice(1).forEach(p=>cx.lineTo(p.x,p.y));
-    cx.stroke();
-    cx.restore();
-    // arrowhead at last segment
-    if(pts.length>=2){
-      const a=pts[pts.length-2], b=pts[pts.length-1];
-      const ang=Math.atan2(b.y-a.y,b.x-a.x);
-      arrowhead(b.x,b.y,ang,color,9);
+  /* Find where a ray from (x1,y1)→(x2,y2) first intersects the right half of the eye ellipse */
+  function rayRetinaIntersect(x1,y1,x2,y2){
+    // parametric: P(t)= (x1+t*dx, y1+t*dy)
+    // on ellipse: ((Px-cx)/rx)^2 + ((Py-cy)/ry)^2 = 1
+    const dx=x2-x1, dy=y2-y1;
+    const cx2=EYE.cx, cy2=EYE.cy;
+    const rx=EYE.rx, ry=EYE.ry;
+    const A=(dx*dx)/(rx*rx)+(dy*dy)/(ry*ry);
+    const bx=x1-cx2, by=y1-cy2;
+    const B=2*((bx*dx)/(rx*rx)+(by*dy)/(ry*ry));
+    const C=(bx*bx)/(rx*rx)+(by*by)/(ry*ry)-1;
+    const disc=B*B-4*A*C;
+    if(disc<0) return null;
+    const sq=Math.sqrt(disc);
+    const t1=(-B-sq)/(2*A), t2=(-B+sq)/(2*A);
+    // pick smallest t>0.05 where x > eye center - small margin (right half)
+    let best=null;
+    for(const t of [t1,t2]){
+      if(t<0.05) continue;
+      const px=x1+t*dx, py=y1+t*dy;
+      if(px > cx2-20){
+        if(best===null || t<best.t) best={t,x:px,y:py};
+      }
     }
+    return best?{x:best.x,y:best.y}:null;
   }
 
-  function drawDotPath(pts,color,lw=2){
-    if(pts.length<2) return;
-    cx.save();
-    cx.strokeStyle=color; cx.lineWidth=lw; cx.setLineDash([6,5]);
-    cx.beginPath();
-    cx.moveTo(pts[0].x,pts[0].y);
-    pts.slice(1).forEach(p=>cx.lineTo(p.x,p.y));
-    cx.stroke();
-    cx.restore();
-  }
+  /* ── Focus/image indicators ── */
+  function drawFocusIndicator(focusX){
+    const retX=EYE.retinaX;
+    const onRetina = Math.abs(focusX-retX)<3;
+    const behind   = focusX > retX+3;
 
-  /* ─── Draw near-object rays (2 rays) ─── */
-  function drawNearRays(focusX){
-    // Two rays from point object on axis:
-    // Ray 1 (blue):  travels upward toward top of eye lens
-    // Ray 2 (red):   travels downward toward bottom of eye lens
-    const obj = {x: S.objX, y: AY};
-    const offsets = [-52, 52];
-    const colors  = ['#2f80ed','#eb5757'];
-
-    offsets.forEach((off,i)=>{
-      const {solid,dotted}=buildRay(obj.x,obj.y, AY+off, focusX);
-      drawPath(solid, colors[i]);
-      drawDotPath(dotted, colors[i]);
-    });
-  }
-
-  /* ─── Draw distant-object rays (2 parallel rays) ─── */
-  function drawDistantRays(focusX){
-    // Two horizontal parallel rays, one above and one below axis
-    const offsets = [-52, 52];
-    const colors  = ['#2f80ed','#eb5757'];
-    const startX  = 30;
-    const lx      = EYE.lensX;
-    const rx      = EYE.retinaX;
-
-    offsets.forEach((off,i)=>{
-      const startY = AY + off;
-      // parallel rays hit eye lens at same height offset
-      let entryY = AY + off;
-
-      if(S.mode!=='normal' && S.lens!=='none'){
-        // at corrX, ray is still at same Y (parallel)
-        const corrY = AY + off;
-        const slopeIn = 0; // horizontal
-        const slopeOut = bendAtCorrLens(corrY, slopeIn + off*0.0045);
-        entryY = corrY + slopeOut*(lx - CORR_X);
-      }
-
-      const points = [];
-      const dotted = [];
-
-      if(S.mode!=='normal' && S.lens!=='none'){
-        const corrY = AY + off;
-        const slopeIn_approx = off * 0.0045;
-        const slopeOut = bendAtCorrLens(corrY, slopeIn_approx);
-        const newEntryY = corrY + slopeOut*(lx - CORR_X);
-
-        points.push({x:startX, y:startY},{x:CORR_X,y:corrY},{x:lx,y:newEntryY});
-
-        if(focusX<=rx){
-          points.push({x:focusX,y:AY});
-          if(focusX<rx){
-            const rPt=ptAtX(lx,newEntryY,focusX,AY,rx);
-            points.push({x:rx,y:rPt.y});
-          }
-        } else {
-          const rPt=ptAtX(lx,newEntryY,focusX,AY,rx);
-          points.push({x:rx,y:rPt.y});
-          dotted.push({x:rx,y:rPt.y},{x:focusX,y:AY});
-        }
-      } else {
-        points.push({x:startX,y:startY},{x:lx,y:AY+off});
-        if(focusX<=rx){
-          points.push({x:focusX,y:AY});
-          if(focusX<rx){
-            const rPt=ptAtX(lx,AY+off,focusX,AY,rx);
-            points.push({x:rx,y:rPt.y});
-          }
-        } else {
-          const rPt=ptAtX(lx,AY+off,focusX,AY,rx);
-          points.push({x:rx,y:rPt.y});
-          dotted.push({x:rx,y:rPt.y},{x:focusX,y:AY});
-        }
-      }
-
-      drawPath(points, colors[i]);
-      drawDotPath(dotted, colors[i]);
-    });
-  }
-
-  /* ─── Focus/image dot ─── */
-  function drawFocusDot(focusX){
-    const onRetina = Math.abs(focusX - EYE.retinaX)<2;
-    const behind   = focusX > EYE.retinaX+2;
     if(onRetina){
-      dot(EYE.retinaX, AY, 7, '#27ae60');
-      label('Image on retina ✓', EYE.retinaX-70, AY+26, '#27ae60', 13);
+      // green dot on retina arc at axis
+      const hitX = retinaXatY(0);
+      dot(hitX, AY, 8, '#27ae60');
+      label('Image on retina ✓', hitX-76, AY+28, '#1b6c42',13);
     } else if(behind){
-      // dotted circle
-      cx.save();
-      cx.strokeStyle='#f2994a'; cx.lineWidth=2; cx.setLineDash([5,5]);
-      cx.beginPath(); cx.arc(focusX,AY,7,0,Math.PI*2); cx.stroke();
-      cx.restore();
-      dot(EYE.retinaX,AY,6,'#eb5757');
-      label('Expected focus behind retina', EYE.retinaX+10, AY-18, '#c47b00', 13);
+      ctx.save();
+      ctx.strokeStyle='#f2994a'; ctx.lineWidth=2; ctx.setLineDash([5,5]);
+      ctx.beginPath(); ctx.arc(focusX,AY,8,0,Math.PI*2); ctx.stroke();
+      ctx.restore();
+      const hitX=retinaXatY(0);
+      dot(hitX,AY,7,'#eb5757');
+      label('Expected focus behind retina', hitX+12, AY-20, '#c47b00',13);
     } else {
-      dot(focusX, AY, 7, '#f2994a');
-      label('Focus in front of retina', focusX-60, AY-18, '#c05000', 13);
-      dot(EYE.retinaX, AY, 6, '#eb5757');
+      dot(focusX,AY,8,'#f2994a');
+      label('Focus in front of retina', focusX-60, AY-20, '#c05000',13);
+      const hitX=retinaXatY(0);
+      dot(hitX,AY,7,'#eb5757');
     }
   }
 
-  /* ─── Background & grid ─── */
+  /* ── Background ── */
   function drawBG(){
-    cx.clearRect(0,0,W,H);
-    const g=cx.createLinearGradient(0,0,0,H);
+    ctx.clearRect(0,0,W,H);
+    const g=ctx.createLinearGradient(0,0,0,H);
     g.addColorStop(0,'#fbfdff'); g.addColorStop(1,'#eef6ff');
-    cx.fillStyle=g; cx.fillRect(0,0,W,H);
-    cx.save();
-    cx.strokeStyle='rgba(120,150,190,0.08)'; cx.lineWidth=1;
-    for(let x=0;x<=W;x+=40){cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke();}
-    for(let y=0;y<=H;y+=40){cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}
-    cx.restore();
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.save(); ctx.strokeStyle='rgba(120,150,190,0.08)'; ctx.lineWidth=1;
+    for(let x=0;x<=W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<=H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.restore();
   }
 
-  /* ─── Axis ─── */
   function drawAxis(){
-    line(20,AY,W-20,AY,'rgba(100,120,160,0.30)',1.5,[8,6]);
+    ctx.save(); ctx.strokeStyle='rgba(100,120,160,0.28)';
+    ctx.lineWidth=1.5; ctx.setLineDash([8,6]);
+    ctx.beginPath(); ctx.moveTo(20,AY); ctx.lineTo(W-20,AY);
+    ctx.stroke(); ctx.restore();
   }
 
-  /* ─── Title ─── */
   function drawTitle(){
     const t={normal:'Normal Sight',myopia:'Short-sightedness (Myopia)',hyperopia:'Long-sightedness (Hyperopia)'}[S.mode];
-    cx.save();
-    cx.font='bold 20px Arial'; cx.fillStyle='#183153';
-    cx.fillText(t,24,36);
-    cx.restore();
+    ctx.save(); ctx.font='bold 20px Arial'; ctx.fillStyle='#183153';
+    ctx.fillText(t,24,36); ctx.restore();
   }
 
-  /* ─── Object point ─── */
   function drawObjectPoint(){
     if(S.objMode!=='near') return;
-    dot(S.objX, AY, 9, '#f2994a');
-    // glow ring
-    cx.save();
-    cx.strokeStyle='rgba(242,153,74,0.3)'; cx.lineWidth=3;
-    cx.beginPath(); cx.arc(S.objX,AY,16,0,Math.PI*2); cx.stroke();
-    cx.restore();
-    label('Object (drag me)', S.objX-50, AY+30, '#b86000',13);
+    dot(S.objX,AY,9,'#f2994a');
+    ctx.save(); ctx.strokeStyle='rgba(242,153,74,0.32)'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.arc(S.objX,AY,17,0,Math.PI*2); ctx.stroke(); ctx.restore();
+    label('Object (drag me)', S.objX-50, AY+32, '#b86000',13);
   }
 
-  /* ─── Parallel ray label ─── */
   function drawParallelLabel(){
     if(S.objMode!=='distant') return;
-    label('Parallel rays (distant object)', 36, AY-70, '#183153', 13);
+    label('Parallel rays (distant object)', 38, AY-80, '#183153',13);
   }
 
-  /* ─── Status text update ─── */
+  /* ── Status ── */
   function updateStatus(focusX){
-    const cond = {normal:'Normal sight',myopia:'Short-sightedness',hyperopia:'Long-sightedness'}[S.mode];
-    const objStr = S.objMode==='near'?'near object':'distant object';
-    stTitle.textContent = `${cond} — ${objStr}`;
-
+    const cond={normal:'Normal sight',myopia:'Short-sightedness',hyperopia:'Long-sightedness'}[S.mode];
+    stTitle.textContent=`${cond} — ${S.objMode==='near'?'Near object':'Distant object'}`;
     let txt='';
-    const onR = Math.abs(focusX-EYE.retinaX)<3;
-    const behind = focusX>EYE.retinaX+3;
-
-    if(S.mode==='normal'){
-      txt = S.objMode==='near'
-        ? 'The eye lens thickens (accommodation) to keep the image focused exactly on the retina.'
-        : 'Distant parallel rays converge naturally on the retina with a thinner eye lens.';
-    } else if(S.mode==='myopia'){
-      if(S.objMode==='near'){
-        txt='Short-sighted eyes can still focus on near objects — the image lands on the retina.';
-      } else {
-        if(S.lens==='none') txt='Without correction, parallel rays are too strongly converged and focus in front of the retina.';
-        else if(S.lens==='concave') txt='The plano-concave lens diverges the parallel rays first, shifting the focus back onto the retina. ✓';
-        else txt='The convex lens adds more convergence, pushing the focus even further in front of the retina.';
-      }
+    const mode=S.mode, obj=S.objMode, lens=S.lens;
+    if(mode==='normal'){
+      txt=obj==='near'
+        ?'The eye lens thickens (accommodation) to focus the near object exactly on the retina.'
+        :'Distant parallel rays converge naturally on the retina. The eye lens is at its thinnest.';
+    } else if(mode==='myopia'){
+      if(obj==='near') txt='A short-sighted eye can still focus near objects on the retina.';
+      else if(lens==='none') txt='Parallel rays are over-converged by the eye — focus falls in front of the retina.';
+      else if(lens==='concave') txt='The plano-concave lens diverges rays first, correcting the focus back onto the retina. ✓';
+      else txt='The convex lens converges rays even more, pushing the focus further in front of the retina.';
     } else {
-      if(S.objMode==='distant'){
-        txt='Long-sighted eyes can focus distant parallel rays on the retina without correction.';
-      } else {
-        if(S.lens==='none') txt='Without correction, the near object rays are too weakly converged — expected focus falls behind the retina.';
-        else if(S.lens==='convex') txt='The convex lens adds convergence, bringing the focus forward onto the retina. ✓';
-        else txt='The concave lens reduces convergence, pushing the expected focus even further behind the retina.';
-      }
+      if(obj==='distant') txt='Distant parallel rays can still focus on the retina in a long-sighted eye.';
+      else if(lens==='none') txt='The eye cannot converge near rays enough — expected focus falls behind the retina.';
+      else if(lens==='convex') txt='The convex lens adds convergence, bringing the focus onto the retina. ✓';
+      else txt='The concave lens reduces convergence, pushing the expected focus even further behind the retina.';
     }
     stText.innerHTML=txt;
   }
 
-  /* ─── Button visual state ─── */
   function updateButtons(){
     Object.values(B).forEach(b=>b.classList.remove('active'));
     B[S.mode].classList.add('active');
@@ -636,8 +610,8 @@
     [B.noLens,B.convex,B.concave].forEach(b=>b.disabled=(S.mode==='normal'));
   }
 
-  /* ─── Main draw ─── */
-  function draw(){
+  /* ── Main render ── */
+  function redraw(){
     const focusX = computeFocusX();
     const thick  = eyeLensThickness();
     updateStatus(focusX);
@@ -648,65 +622,56 @@
     drawAxis();
     drawEye();
     drawRetina();
-    // corrective lens behind eye (drawn before eye lens)
+
     if(S.mode!=='normal' && S.lens!=='none'){
       if(S.lens==='convex')  drawConvexCorrLens();
       else                   drawConcaveCorrLens();
     }
+
     drawEyeLens(thick);
-    // rays
-    if(S.objMode==='near')    drawNearRays(focusX);
-    else                       drawDistantRays(focusX);
-    drawFocusDot(focusX);
+
+    // Draw two rays (+1 above, -1 below axis)
+    const colors=['#2f80ed','#eb5757'];
+    [1,-1].forEach((sign,i)=>{
+      const {solid,dotted}=buildRayPath(sign,focusX);
+      drawRayPoly(solid, colors[i]);
+      drawDashedPoly(dotted, colors[i]);
+    });
+
+    drawFocusIndicator(focusX);
     drawObjectPoint();
     drawParallelLabel();
   }
 
-  function refresh(){ draw(); }
-
-  /* ─── Pointer events ─── */
+  /* ── Pointer events ── */
   function canvasXY(e){
     const r=cv.getBoundingClientRect();
-    const sx=cv.width/r.width, sy=cv.height/r.height;
+    const sx=cv.width/r.width;
+    const sy=cv.height/r.height;
     const cx2=e.touches?e.touches[0].clientX:e.clientX;
     const cy2=e.touches?e.touches[0].clientY:e.clientY;
     return {x:(cx2-r.left)*sx, y:(cy2-r.top)*sy};
   }
-
-  function hitObj(pos){
-    return S.objMode==='near' &&
-           Math.hypot(pos.x-S.objX, pos.y-AY)<22;
-  }
+  function hitObj(p){ return S.objMode==='near'&&Math.hypot(p.x-S.objX,p.y-AY)<22; }
 
   cv.addEventListener('mousedown',e=>{
-    const p=canvasXY(e);
-    if(hitObj(p)){S.drag=true; cv.classList.add('dragging'); e.preventDefault();}
+    if(hitObj(canvasXY(e))){ S.drag=true; cv.classList.add('dragging'); e.preventDefault(); }
   });
   cv.addEventListener('mousemove',e=>{
     const p=canvasXY(e);
-    if(S.drag){
-      S.objX=clamp(p.x,CLAMP_MIN,CLAMP_MAX);
-      draw(); e.preventDefault();
-    } else {
-      cv.classList.toggle('draggable', hitObj(p));
-    }
+    if(S.drag){ S.objX=clamp(p.x,CLAMP_MIN,CLAMP_MAX); redraw(); e.preventDefault(); }
+    else cv.classList.toggle('draggable',hitObj(p));
   });
   window.addEventListener('mouseup',()=>{ S.drag=false; cv.classList.remove('dragging'); });
-
   cv.addEventListener('touchstart',e=>{
-    const p=canvasXY(e);
-    if(hitObj(p)){S.drag=true; e.preventDefault();}
+    if(hitObj(canvasXY(e))){ S.drag=true; e.preventDefault(); }
   },{passive:false});
   cv.addEventListener('touchmove',e=>{
-    if(S.drag){
-      const p=canvasXY(e);
-      S.objX=clamp(p.x,CLAMP_MIN,CLAMP_MAX);
-      draw(); e.preventDefault();
-    }
+    if(S.drag){ S.objX=clamp(canvasXY(e).x,CLAMP_MIN,CLAMP_MAX); redraw(); e.preventDefault(); }
   },{passive:false});
   window.addEventListener('touchend',()=>S.drag=false);
 
-  draw();
+  redraw();
 })();
 </script>
 </body>
